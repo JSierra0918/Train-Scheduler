@@ -20,43 +20,76 @@ $(document).ready(function () {
         var destination = $("#destination").val();
         var trainTime = $("#train-time").val();
         var frequency = $("#frequency").val();
-        var minutesAway = "";
 
-        alert("Submit Clicked");
+        //get arrival and minutes away
+        timeConverter(trainTime, frequency);
+
+        var timC = timeConverter();
+        //assign values
+        var trainArrival =  timeC.nextTrain;
+        var minutesAway = timeC.minutesAway;
+
+        console.log("train arrival - "+ trainArrival," minutes away -" + minutesAway);
+        
 
         // $("tbody").append($("<tr>").text(trainName));
 
         //set info to firebase
-        database.ref().push({
+        database.ref("/Schedule").push({
             trainName,
             destination,
-            trainTime,
             frequency,
+            trainArrival,
             minutesAway
         });
     });
 
-    database.ref().on("child_added", function (snapshot) {
+
+    function timeConverter (trainTimeConv,frequencyConv) {
+
+        var hoursMinutes = moment(trainTimeConv,"HH:mm").subtract(1, "years") ;
+        console.log(hoursMinutes);
+        var diffTime = moment().diff(moment(hoursMinutes, "minutes"));
+        console.log("diffTime - " + diffTime);
+        var timeApart = diffTime % frequencyConv;
+        var minutesAway = frequencyConv - timeApart;
+        console.log("minutes away - " + minutesAway);
+        var nextTrain = moment().add(minutesAway, "minutes");
+        console.log("nextTrain - " + nextTrain);
+
+       return {
+           nextTrain,
+           minutesAway
+       }
+
+    }
+
+
+
+    database.ref("/Schedule").on("child_added", function (snapshot) {
 
         var sv = snapshot.val();
-        
-        console.log(sv);
-        addRow(sv.trainName,sv.destination,sv.trainTime,sv.frequency,sv.minutesAway);
 
+        addRow(sv.trainName,sv.destination,sv.frequency,sv.trainArrival,sv.minutesAway);
+
+    }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
     });
 
-    function addRow (tN,dest,fre,tT,mA ){
+
+    function addRow (tN,dest, fre,nextA,mA ){
         var tableRow = $("<tr>");
         tableRow
             .append(` <td> ${tN}</td>`)
             .append(` <td> ${dest}</td>`)
             .append(` <td> ${fre}</td>`)
-            .append(` <td> ${tT}</td>`)
+            .append(` <td> ${nextA}</td>`)
             .append(` <td> ${mA}</td>`);
 
             $("tbody").append(tableRow);
 
     }
+
 
 
 });

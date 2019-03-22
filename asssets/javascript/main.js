@@ -22,7 +22,6 @@ $(document).ready(function () {
         var frequency = $("#frequency").val();
 
         //get arrival and minutes away
-        ;
 
         var timeC = timeConverter(trainTime, frequency);
         //assign values
@@ -77,6 +76,7 @@ $(document).ready(function () {
 
 
     function addRow (tN,dest, fre,nextA,mA ){
+
         var tableRow = $("<tr>");
         tableRow
             .append(` <td> ${tN}</td>`)
@@ -90,5 +90,10 @@ $(document).ready(function () {
     }
 
 
+    function initialzeRows () {
+
+
+
+    }
 
 });

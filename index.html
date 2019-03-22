@@ -8,6 +8,9 @@
     <title>Train Scheduler</title>
     <link rel="stylesheet" href="./asssets/css/reset.css">
     <link rel="stylesheet" href="./asssets/css/style.css">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=Francois+One|Germania+One|Montserrat" rel="stylesheet">
+
 
     <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
  
@@ -16,10 +19,10 @@
 
 <body>
 
-    <div class="container">
+    <div class="container bg-color">
         <header class="header">
             <h1>Train Times</h1>
-            <h3>60% of the time it will be 100% on tim</h3>
+            <h3>[  60% of the time; 100% on time ]</h3>
         </header>
 
         <section class="train-schedule">
@@ -29,7 +32,7 @@
                         <tr>
                             <th  id="train-name-display">Train Name</th>
                             <th  id="destination-display">Destination</th>
-                            <th  id="frequency-display">Frequency</th>
+                            <th  id="frequency-display">Frequency (mins)</th>
                             <th  id="next-arrival-display">Next Arrival</th>
                             <th  id="minutes-away-display">Minutes Away</th>
                         </tr>
@@ -45,21 +48,21 @@
             <form>
                 <div class="form-group">
                     <label for="train-name">Train Name:</label>
-                    <input type="text" class="form-control" id="train-name" aria-describedby="train-name">
+                    <input type="text" class="form-control" id="train-name" aria-describedby="train-name" placeholder="Train Name:">
                 </div>
                 <div class="form-group">
-                    <label for="destination">destination:</label>
-                    <input type="text" class="form-control" id="destination" aria-describedby="destination">
+                    <label for="destination">Destination:</label>
+                    <input type="text" class="form-control" id="destination" aria-describedby="destination" placeholder="Destination: ">
                 </div>
                 <div class="form-group">
                     <label for="train-time">First Train Time (HHmm : military time):</label>
-                    <input type="text" class="form-control" id="train-time" aria-describedby="train-time">
+                    <input type="text" class="form-control" id="train-time" aria-describedby="train-time" placeholder="First Train Time (HHmm : military time):">
                 </div>
                 <div class="form-group">
-                    <label for="frequency">frequency (min)</label>
-                    <input type="text" class="form-control" id="frequency" aria-describedby="frequency">
+                    <label for="frequency">How often does the train pass by? (mins)</label>
+                    <input type="text" class="form-control" id="frequency" aria-describedby="frequency" placeholder="How often does the train pass by? (mins)">
                 </div>
-                <button id="submit-button" type="submit" class="button">Submit</button>
+                <button id="submit-button" type="submit" class="button" placeholder="name">Submit</button>
             </form>
         </section>
     </div>

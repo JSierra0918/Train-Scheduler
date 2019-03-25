@@ -25,11 +25,11 @@ $(document).ready(function () {
 
         var timeC = timeConverter(trainTime, frequency);
         //assign values
-        var trainArrival =  timeC.nextTrain;
+        var trainArrival = timeC.nextTrain;
         var minutesAway = timeC.minutesAway;
 
-        console.log("train arrival - "+ trainArrival," minutes away -" + minutesAway);
-        
+        console.log("train arrival - " + trainArrival, " minutes away -" + minutesAway);
+
 
         // $("tbody").append($("<tr>").text(trainName));
 
@@ -44,22 +44,22 @@ $(document).ready(function () {
     });
 
 
-    function timeConverter (trainTimeConv,frequencyConv) {
+    function timeConverter(trainTimeConv, frequencyConv) {
 
-        var hoursMinutes = moment(trainTimeConv,"HH:mm").subtract(1, "years") ;
+        var hoursMinutes = moment(trainTimeConv, "HH:mm").subtract(1, "years");
         console.log(hoursMinutes);
         var diffTime = moment().diff(moment(hoursMinutes), "minutes");
         console.log("diffTime - " + diffTime);
         var timeApart = diffTime % frequencyConv;
         var minutesAway = frequencyConv - timeApart;
-    
+
         console.log("minutes away - " + minutesAway);
         var nextTrain = moment().add(minutesAway, "minutes").format("hh:mm");
 
-       return {
-           nextTrain,
-           minutesAway
-       }
+        return {
+            nextTrain,
+            minutesAway
+        }
 
     }
 
@@ -68,14 +68,14 @@ $(document).ready(function () {
 
         var sv = snapshot.val();
 
-        addRow(sv.trainName,sv.destination,sv.frequency,sv.trainArrival,sv.minutesAway);
+        addRow(sv.trainName, sv.destination, sv.frequency, sv.trainArrival, sv.minutesAway);
 
     }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
     });
 
 
-    function addRow (tN,dest, fre,nextA,mA ){
+    function addRow(tN, dest, fre, nextA, mA) {
 
         var tableRow = $("<tr>");
         tableRow
@@ -85,15 +85,36 @@ $(document).ready(function () {
             .append(` <td> ${nextA}</td>`)
             .append(` <td> ${mA}</td>`);
 
-            $("tbody").append(tableRow);
+        $("tbody").append(tableRow);
 
     }
 
+    //click form group input, display label animation
+    $("input").focus(function () {
 
-    function initialzeRows () {
+        if ($(this).is(":focus")) {
+            $(this).prev("label").toggle("normal");
+            $(this).prev("label").css("")
+        }
 
+        $(this).focusout(function (){
+            $(this).prev("label").toggle("normal");
+        });
+       
+    });
 
+    function initializeAnimations() {
+
+        var smokeAnimation = bodymovin.loadAnimation({
+            container: document.getElementsByClassName('smoke-animation'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: './smoke.json'
+          })
 
     }
+
+    initializeAnimations();
 
 });

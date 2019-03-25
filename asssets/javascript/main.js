@@ -101,20 +101,14 @@ $(document).ready(function () {
             $(this).prev("label").toggle("normal");
         });
        
-    });
-
-    function initializeAnimations() {
-
-        var smokeAnimation = bodymovin.loadAnimation({
-            container: document.getElementsByClassName('smoke-animation'),
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: './smoke.json'
-          })
-
-    }
-
-    initializeAnimations();
+    });    
 
 });
+
+var smokeAnimation = bodymovin.loadAnimation({
+    container: document.getElementById('smoke-left'),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: 'smoke.json'
+  });

@@ -136,3 +136,22 @@ input:focus +  label {
     border: none;
     height: 30px;
 }
+.header-wrapper {
+    display: flex;
+    justify-content: center;
+
+}
+
+.header-wrapper h1 {
+    position: relative;
+}
+#smoke-left {
+    position: absolute;
+    left: -4vw;
+    max-width: 20%;
+    display: inline-block;
+}
+
+#smoke-right {
+
+}

@@ -90,18 +90,18 @@ $(document).ready(function () {
     }
 
     //click form group input, display label animation
-    $("input").focus(function () {
+    // $("input").focus(function () {
 
-        if ($(this).is(":focus")) {
-            $(this).prev("label").toggle("normal");
-            $(this).prev("label").css("")
-        }
+    //     if ($(this).is(":focus")) {
+    //         $(this).prev("label").toggle("normal");
+    //         $(this).prev("label").css("")
+    //     }
 
-        $(this).focusout(function (){
-            $(this).prev("label").toggle("normal");
-        });
+    //     $(this).focusout(function (){
+    //         $(this).prev("label").toggle("normal");
+    //     });
        
-    });    
+    // });    
 
 });
 
@@ -110,5 +110,13 @@ var smokeAnimation = bodymovin.loadAnimation({
     renderer: 'svg',
     loop: true,
     autoplay: true,
-    path: 'smoke.json'
+    path: 'clouds-left.json'
+  });
+
+  var smokeAnimationR = bodymovin.loadAnimation({
+    container: document.getElementById('smoke-right'),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: 'clouds-left.json'
   });

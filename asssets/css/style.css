@@ -162,3 +162,8 @@ input:focus +  label {
     display: inline-block;
     bottom: -5vh;
 }
+
+button#submit-button {
+    width: 15vw;
+    height: 4vw;
+}

@@ -7,3 +7,4 @@ A train schedule application that incorporates Firebase to host arrival and depa
   * Javascript
   * HTML 5
   * CSS3
+  * MomentJS

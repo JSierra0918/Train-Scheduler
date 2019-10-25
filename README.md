@@ -8,3 +8,6 @@ A train schedule application that incorporates Firebase to host arrival and depa
   * HTML 5
   * CSS3
   * MomentJS
+
+## Check it out:
+[Train Scheduler](https://github.com/JSierra0918/Train-Scheduler)
